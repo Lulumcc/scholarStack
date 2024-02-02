@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "title": "CReSCENT: CanceR Single Cell ExpressioN Toolkit",
+        "description": "… of a single gene in CReSCENTs GUI. CReSCENT was able to perform gene query and visualization in 3 s for 1000 cells, 8 s for 30 000 cells and 13 s for the entire 68 579 …",
+        "authors":["S. Mohanraj", "J.D. Mejia"],
+        "date": "2020/07/21",
+        "openAccess": true,
+        "doi": "https://doi.org/10.1093/nar/gkaa437",
+        "coverImage": "https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/nar/Issue/48/W1/1/m_cover.gif?Expires=1709925914&Signature=vM10yTLpDjCbQJ076kRYtIEP8tBw7SYCzwCBZJolmeJBRU81ouvrGH6DLk6VewM4UUwJdG1NsgYivGr4xYrA3OLDZA5AO-AIyJ2rBO0Z9jplfCHYjNI-s-8guYLY5t3S7HfppJv4UEeNU4Wj24wIehmNGV8IZ8fqdx7~T0JVblwPhXpOKeWh9Ykl07fQ4kJ283~Te2t8RPvOkSl4eL6PFcozDlulBQHVIjJrIYPvS2~pGZNAUSt-~6UGRlQp8weZsO90fXUKifUL1WtwAknpaIIryqKuWeTEpysHRMnoPPn-jDFTirLYQ1jvZ5Nb6WOcYhbThwOjkygN71cE5cpVHg__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA",
+        "journal": 1
+    },
+    {
+        "id": 2,
+        "title": "CReSCENT: CanceR Single Cell ExpressioN Toolkit",
+        "description": "… of a single gene in CReSCENTs GUI. CReSCENT was able to perform gene query and visualization in 3 s for 1000 cells, 8 s for 30 000 cells and 13 s for the entire 68 579 …",
+        "authors":["S. Mohanraj", "J.D. Mejia"],
+        "date": "2020/07/21",
+        "openAccess": true,
+        "doi": "https://doi.org/10.1093/nar/gkaa437",
+        "coverImage": "https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/nar/Issue/48/W1/1/m_cover.gif?Expires=1709925914&Signature=vM10yTLpDjCbQJ076kRYtIEP8tBw7SYCzwCBZJolmeJBRU81ouvrGH6DLk6VewM4UUwJdG1NsgYivGr4xYrA3OLDZA5AO-AIyJ2rBO0Z9jplfCHYjNI-s-8guYLY5t3S7HfppJv4UEeNU4Wj24wIehmNGV8IZ8fqdx7~T0JVblwPhXpOKeWh9Ykl07fQ4kJ283~Te2t8RPvOkSl4eL6PFcozDlulBQHVIjJrIYPvS2~pGZNAUSt-~6UGRlQp8weZsO90fXUKifUL1WtwAknpaIIryqKuWeTEpysHRMnoPPn-jDFTirLYQ1jvZ5Nb6WOcYhbThwOjkygN71cE5cpVHg__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA",
+        "journal": 2
+    },
+    {
+        "id": 3,
+        "title": "CReSCENT: CanceR Single Cell ExpressioN Toolkit",
+        "description": "… of a single gene in CReSCENTs GUI. CReSCENT was able to perform gene query and visualization in 3 s for 1000 cells, 8 s for 30 000 cells and 13 s for the entire 68 579 …",
+        "authors":["S. Mohanraj", "J.D. Mejia"],
+        "date": "2020/07/21",
+        "openAccess": true,
+        "doi": "https://doi.org/10.1093/nar/gkaa437",
+        "coverImage": "https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/nar/Issue/48/W1/1/m_cover.gif?Expires=1709925914&Signature=vM10yTLpDjCbQJ076kRYtIEP8tBw7SYCzwCBZJolmeJBRU81ouvrGH6DLk6VewM4UUwJdG1NsgYivGr4xYrA3OLDZA5AO-AIyJ2rBO0Z9jplfCHYjNI-s-8guYLY5t3S7HfppJv4UEeNU4Wj24wIehmNGV8IZ8fqdx7~T0JVblwPhXpOKeWh9Ykl07fQ4kJ283~Te2t8RPvOkSl4eL6PFcozDlulBQHVIjJrIYPvS2~pGZNAUSt-~6UGRlQp8weZsO90fXUKifUL1WtwAknpaIIryqKuWeTEpysHRMnoPPn-jDFTirLYQ1jvZ5Nb6WOcYhbThwOjkygN71cE5cpVHg__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA",
+        "journal": 3
+    }
+]

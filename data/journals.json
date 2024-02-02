@@ -1,0 +1,25 @@
+[
+    {
+        "id": 1,
+        "name": "Nucleic Acids Research",
+        "url" : "https://academic.oup.com/nar"
+    },
+    {
+        "id": 2,
+        "name": "Nature",
+        "url": "https://www.nature.com/"
+
+    },
+    {
+        "id": 3,
+        "name": "Science",
+        "url":"https://www.science.org/"
+
+    },
+    {
+        "id": 4,
+        "name": "Cell",
+        "url":"https://www.cell.com/"
+
+    }
+]
