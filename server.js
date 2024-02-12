@@ -7,6 +7,7 @@ const path = require("path")
 
 app.use(express.static("public"))
 
+
 app.get("/", (req, res) => {
     res.redirect("/articles")
 })
@@ -20,10 +21,29 @@ app.get("/articles", (req, res) => {
 })
 
 app.get("/about", (req, res) => {
-    scholarService.getArticles().then((articles) => {
-        // res.json(articles)
-        res.send(articles)
-    })})
+    res.send("about")
+})
+
+
+app.get("/articles/test", (req, res) => {
+    res.send("test")  
+})
+
+app.get("/articles/:articleID", (req, res) => {
+    // res.send("your ID: "+ req.params.articleID)
+    scholarService.getArticleByID(req.params.articleID).then((article) => {
+        res.send(article)
+    }).catch((err) => {
+        console.log(err)
+        res.send(err)
+    })
+})
+
+
+
+app.use((req, res, next) => {
+    res.status(404).send("404 - We're unable to find what you're looking for.");
+})
 
 scholarService.initialize().then(() => {
     app.listen(HTTP_PORT, () => {
