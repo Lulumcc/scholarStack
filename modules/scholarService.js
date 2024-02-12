@@ -25,7 +25,20 @@ function getArticles() {
     })
 }
 
+function getArticleByID(id) {
+    return new Promise((resolve, reject) => {
+        let foundArticle = articles.find(((article) => article.id == id))
+        if (foundArticle) {
+            resolve(foundArticle)
+
+        } else {
+            reject("article not found by "+id)
+        }
+    })
+}
+
 module.exports = {
     initialize,
-    getArticles
+    getArticles,
+    getArticleByID
 }
