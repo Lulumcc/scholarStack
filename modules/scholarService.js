@@ -37,8 +37,20 @@ function getArticleByID(id) {
     })
 }
 
+function getArticlesByJournal(journalID) {
+    return new Promise((resolve, reject) => {
+        let foundArticles = articles.filter(((article) => article.journal == journalID))
+        if (foundArticles.length > 0) {
+            resolve(foundArticles)
+        } else {
+            reject("no articles found with that journal id")
+        }
+    })
+}
+
 module.exports = {
     initialize,
     getArticles,
-    getArticleByID
+    getArticleByID,
+    getArticlesByJournal
 }
