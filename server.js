@@ -13,11 +13,25 @@ app.get("/", (req, res) => {
 })
 
 app.get("/articles", (req, res) => {
-    scholarService.getArticles().then((articles) => {
-        // res.json(articles)
-        res.sendFile(path.join(__dirname, "/views/index.html"))
-        console.log(articles)
-    })
+
+    if (req.query.journal) {
+        scholarService.getArticlesByJournal(req.query.journal).then((articles) => {
+            res.send(articles)
+        }).catch((err) => {
+            console.log(err)
+            res.send(err)
+        })
+    } else {
+        scholarService.getArticles().then((articles) => {
+            // res.json(articles)
+            res.sendFile(path.join(__dirname, "/views/index.html"))
+            console.log(articles)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
+
 })
 
 app.get("/about", (req, res) => {
