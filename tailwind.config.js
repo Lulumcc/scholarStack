@@ -1,11 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [`./views/**/*.html`], // all .html files
+  content: [`./views/**/*.ejs`], // all .html files
   theme: {
     extend: {},
   },
   daisyui: {
-    themes: ["nord"],
+    themes: ["winter"],
   },
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
 }
