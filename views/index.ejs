@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>scholar stack</title>
+</head>
+<body>
+  <div class="navbar bg-base-100">
+    <div class="flex-1">
+      <a class="btn btn-ghost text-xl">scholarStack</a>
+    </div>
+    <div class="flex-none">
+      <ul class="menu menu-horizontal px-1">
+        <li><a>Link</a></li>
+        <li>
+          <details>
+            <summary>
+              Journals
+            </summary>
+            <ul class="p-2 bg-base-100 rounded-t-none">
+              <li><a href="/articles?journal=1">Journal 1</a></li>
+              <li><a href="/articles?journal=2">Journal 2</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </div>
+  </div>
+      
+      <div class="grid grid-cols-3 gap-4">
+
+        <% articles.forEach((article) => { %>
+
+          <div class="card w-96 bg-base-100 shadow-xl">
+            <figure><img src="<%= article.coverImage%>" alt="Publication" /></figure>
+            <div class="flex">
+              <%if(article.openAccess) {%>
+                <div class="badge badge-secondary"><a href="/articles/openAccess">OPEN-ACCESS</a></div>
+              <%}%>
+            </div>
+
+
+            <div class="card-body">
+              <h2 class="card-title"><%= article.title%></h2>
+              <%article.authors.forEach((author) => {%>
+                <div class="badge badge-primary"><a href="/articles/author/name"><%=author%></a></div>
+              <%})%>
+
+              <p><%= article.description%></p>
+              <div class="card-actions justify-end">
+                <a href="/articles/<%=article.id%>" target="_blank" class="btn btn-primary w-full">Article <%=article.id%></a>
+                <a href="<%=article.doi%>" target="_blank" class="btn btn-success w-full">Take me there!</a>
+                <div class="rating">
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                </div>
+              </div>
+            </div>
+          </div>
+        <%})%>
+
+      </div>
+    
+</body>
+</html>
