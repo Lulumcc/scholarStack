@@ -6,6 +6,7 @@ const scholarService = require("./modules/scholarService")
 const path = require("path")
 
 app.use(express.static("public"))
+app.set("view engine", "ejs")
 
 
 app.get("/", (req, res) => {
@@ -24,7 +25,10 @@ app.get("/articles", (req, res) => {
     } else {
         scholarService.getArticles().then((articles) => {
             // res.json(articles)
-            res.sendFile(path.join(__dirname, "/views/index.html"))
+            // res.sendFile(path.join(__dirname, "/views/index.html"))
+            res.render('index', {
+                articles: articles
+            })
             console.log(articles)
         }).catch((err) => {
             console.log(err)
@@ -32,6 +36,15 @@ app.get("/articles", (req, res) => {
     }
 
 
+})
+
+app.get('/articles/openAccess', (req, res) => {
+    scholarService.getArticleByOpenAccess().then((openArticles) => {
+        res.render('index', {
+            articles: openArticles
+        })
+
+    })
 })
 
 app.get("/about", (req, res) => {
