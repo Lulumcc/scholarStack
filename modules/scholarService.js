@@ -48,9 +48,22 @@ function getArticlesByJournal(journalID) {
     })
 }
 
+function getArticleByOpenAccess() {
+    return new Promise((resolve, reject) => {
+        let foundArticle = articles.filter(((article) => article.openAccess == true))
+        if (foundArticle) {
+            resolve(foundArticle)
+
+        } else {
+            reject("article not found by open-access")
+        }
+    })
+}
+
 module.exports = {
     initialize,
     getArticles,
     getArticleByID,
-    getArticlesByJournal
+    getArticlesByJournal,
+    getArticleByOpenAccess
 }
