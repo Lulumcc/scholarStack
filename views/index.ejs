@@ -7,28 +7,8 @@
     <title>scholar stack</title>
 </head>
 <body>
-  <div class="navbar bg-base-100">
-    <div class="flex-1">
-      <a class="btn btn-ghost text-xl">scholarStack</a>
-    </div>
-    <div class="flex-none">
-      <ul class="menu menu-horizontal px-1">
-        <li><a>Link</a></li>
-        <li>
-          <details>
-            <summary>
-              Journals
-            </summary>
-            <ul class="p-2 bg-base-100 rounded-t-none">
-              <li><a href="/articles?journal=1">Journal 1</a></li>
-              <li><a href="/articles?journal=2">Journal 2</a></li>
-            </ul>
-          </details>
-        </li>
-      </ul>
-    </div>
-  </div>
-      
+
+    <%- include('partials/navbar') %>
       <div class="grid grid-cols-3 gap-4">
 
         <% articles.forEach((article) => { %>
