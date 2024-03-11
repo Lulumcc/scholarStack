@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>scholar stack</title>
+</head>
+<body>
+
+    <%- include('partials/navbar') %>
+    <form method="POST" action="/articles/new"  class="form-control m-10 justify-center">
+
+      <label class="input input-bordered flex items-center gap-2 w-96">
+        <input type="text" class="grow" placeholder="Title" name="title" id="title" />
+      </label>
+        <textarea class="textarea textarea-bordered" placeholder="Description" name="description" id="description"></textarea>
+      <label class="input input-bordered flex items-center gap-2 w-96">
+        <input type="text" class="grow" placeholder="Authors" name="authors" id="authors" />
+      </label>
+      <label class="input input-bordered flex items-center gap-2 w-96">
+        <input type="date" class="grow" placeholder="Date" name="date" id="date" />
+      </label>
+      <label class="input input-bordered flex items-center gap-2 w-96">
+        <span class="label-text">Open-Access?</span> 
+        <input type="checkbox" class="checkbox" name="openAccess" id="openAccess"/>
+    </label>
+    <label class="input input-bordered flex items-center gap-2 w-96">
+        <input type="text" class="grow" placeholder="DOI" name="doi" id="doi" />
+      </label>
+      <label class="input input-bordered flex items-center gap-2 w-96">
+        <input type="file" class="grow" placeholder="Upload Cover Image" name="coverImage" id="coverImage" />
+      </label>
+      <select class="select select-bordered w-full max-w-xs" placeholder="Journal" name="journal" id="journal">
+        <option>Nature</option>
+        <option>Science</option>
+      </select>
+      <button type="submit" class="btn btn-success">submit</button>
+    </form>
+</body>
+</html>
