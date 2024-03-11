@@ -60,10 +60,33 @@ function getArticleByOpenAccess() {
     })
 }
 
+function addJournal(newJournal) {
+    return new Promise((resolve, reject) => {
+        if (newJournal) {
+            newJournal.id = journalData.length + 1
+            journalData.push(newJournal)
+            resolve(journalData)
+        } else {
+            reject("no journal data found")
+        }
+    })
+} 
+function getJournals() {
+    return new Promise((resolve, reject) => {
+        if (journalData) {
+            resolve(journalData)
+        } else {
+            reject("no journal data found")
+        }
+    })
+} 
+
 module.exports = {
     initialize,
     getArticles,
     getArticleByID,
     getArticlesByJournal,
-    getArticleByOpenAccess
+    getArticleByOpenAccess,
+    addJournal,
+    getJournals
 }
