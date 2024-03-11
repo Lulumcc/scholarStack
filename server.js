@@ -7,6 +7,7 @@ const path = require("path")
 
 app.use(express.static("public"))
 app.set("view engine", "ejs")
+app.use(express.urlencoded({ extended: true }));
 
 
 app.get("/", (req, res) => {
@@ -52,8 +53,11 @@ app.get("/about", (req, res) => {
 })
 
 
-app.get("/articles/test", (req, res) => {
-    res.send("test")  
+app.get("/articles/new", (req, res) => {
+    // res.send("new")  
+    res.render('newArticle', {
+        data: 0
+    })
 })
 
 app.get("/articles/:articleID", (req, res) => {
@@ -66,6 +70,29 @@ app.get("/articles/:articleID", (req, res) => {
     })
 })
 
+
+app.get("/journals/new", (req, res) => {
+    res.render('newJournal')
+})
+
+app.post("/journals/new", (req, res) => {
+    console.log(req.body)
+    scholarService.addJournal(req.body).then(() => {
+        res.redirect("/journals")
+    })
+
+    // your logic here to check if req.body.password == yourDataOnFileForThisUser.password
+    // res.send(req.body)
+})
+
+app.get("/journals", (req, res) => {
+    scholarService.getJournals().then((journals) => {
+        // res.send(journals)
+        res.render('journals', {
+            journals: journals
+        })
+    })
+})
 
 
 app.use((req, res, next) => {
