@@ -1,7 +1,9 @@
 const express = require("express")
 const app = express()
+const env = require("dotenv")
+env.config()
 
-const HTTP_PORT = 8080
+const HTTP_PORT = process.env.PORT || 8080
 const scholarService = require("./modules/scholarService")
 const path = require("path")
 
@@ -9,6 +11,7 @@ app.use(express.static("public"))
 app.set("view engine", "ejs")
 app.use(express.urlencoded({ extended: true }));
 
+// console.log(process.env.OPENAI_API_KEY)
 
 app.get("/", (req, res) => {
     res.redirect("/articles")
@@ -20,7 +23,7 @@ app.get("/articles", (req, res) => {
         scholarService.getArticlesByJournal(req.query.journal).then((articles) => {
             res.send(articles)
         }).catch((err) => {
-            console.log(err)
+            // console.log(err)
             res.send(err)
         })
     } else {
@@ -28,9 +31,15 @@ app.get("/articles", (req, res) => {
             // res.json(articles)
             // res.sendFile(path.join(__dirname, "/views/index.html"))
             res.render('index', {
-                articles: articles
+                articles: articles,
+                chat: null
             })
-            console.log(articles)
+            // console.log(articles)
+            // articles.forEach((article) => {
+            //     scholarService.summarizeAbstract(article.description).then(() => {
+            //         console.log("success")
+            // })
+            // })
         }).catch((err) => {
             console.log(err)
         })
@@ -42,7 +51,8 @@ app.get("/articles", (req, res) => {
 app.get('/articles/openAccess', (req, res) => {
     scholarService.getArticleByOpenAccess().then((openArticles) => {
         res.render('index', {
-            articles: openArticles
+            articles: openArticles,
+            chat: null
         })
 
     })
@@ -76,7 +86,7 @@ app.get("/journals/new", (req, res) => {
 })
 
 app.post("/journals/new", (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     scholarService.addJournal(req.body).then(() => {
         res.redirect("/journals")
     })
@@ -93,6 +103,22 @@ app.get("/journals", (req, res) => {
         })
     })
 })
+
+app.post("/chat", (req, res) => {
+    scholarService.chat(req.body.chat).then((chat) => {
+        // res.render(data)
+        scholarService.getArticles().then((articles) => {
+            // res.json(articles)
+            // res.sendFile(path.join(__dirname, "/views/index.html"))
+            res.render('index', {
+                articles: articles,
+                chat: chat
+        
+            })
+    })
+})
+})
+
 
 
 app.use((req, res, next) => {
