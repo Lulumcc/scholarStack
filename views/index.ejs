@@ -39,6 +39,21 @@
                   <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
                   <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
                 </div>
+                <%if (chat) { %>
+
+                <div id="chat" role="alert" class="alert alert-warning">
+                    <p><%= chat.message.content%></p>
+
+                </div>
+                <%}%>
+
+                <form method="POST" action="/chat"  class="form-control m-10 justify-center">
+
+                  <label class="input input-bordered flex items-center gap-2 w-full">
+                    <input type="text" class="grow" placeholder="Ask ChatGPT" name="chat" id="chat" />
+                  </label>
+                  <button type="submit" class="btn btn-success">submit</button>
+                </form>
               </div>
             </div>
           </div>
