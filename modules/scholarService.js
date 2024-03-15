@@ -2,6 +2,33 @@ const articleData = require("../data/articles.json")
 const journalData = require("../data/journals.json")
 let articles = []
 
+const env = require("dotenv")
+env.config()
+
+const OpenAI = require("openai")
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+async function summarizeAbstract(abstract) {
+    const completion = await openai.chat.completions.create({
+        messages: [{ role: "system", content: `summarize this scientific abstract: ${abstract}` }],
+        model: "gpt-4",
+    });
+
+    console.log(completion.choices[0]);
+    return completion.choices[0]
+}
+
+async function chat(prompt) {
+
+    const completion = await openai.chat.completions.create({
+        messages: [{ role: "assistant", content: prompt }],
+        model: "gpt-4",
+    });
+
+    console.log(completion.choices[0]);
+    return completion.choices[0]
+}
+
 function initialize() {
     // do something here to combine the themeID to the lego sets array data 
 
@@ -32,7 +59,7 @@ function getArticleByID(id) {
             resolve(foundArticle)
 
         } else {
-            reject("article not found by "+id)
+            reject("article not found by " + id)
         }
     })
 }
@@ -70,7 +97,7 @@ function addJournal(newJournal) {
             reject("no journal data found")
         }
     })
-} 
+}
 function getJournals() {
     return new Promise((resolve, reject) => {
         if (journalData) {
@@ -79,7 +106,7 @@ function getJournals() {
             reject("no journal data found")
         }
     })
-} 
+}
 
 module.exports = {
     initialize,
@@ -88,5 +115,7 @@ module.exports = {
     getArticlesByJournal,
     getArticleByOpenAccess,
     addJournal,
-    getJournals
+    getJournals,
+    summarizeAbstract,
+    chat
 }
