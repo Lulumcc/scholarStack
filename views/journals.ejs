@@ -40,9 +40,11 @@
               <h2 class="card-title"><%= journal.name%></h2>
     
 
-              <p><%= journal.url%></p>
+              <a href="<%= journal.url%>" target="_blank"><%= journal.url%></a>
+              <a href="/journals/delete/<%=journal.journalID%>" class="btn btn-error">Delete</a>
 
             </div>
+
           </div>
         <%})%>
 
