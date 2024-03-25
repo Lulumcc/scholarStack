@@ -201,8 +201,22 @@ function getJournals() {
         //     reject("no journal data found")
         // }
         Journal.findAll().then((journals) => { resolve(journals) })
-        .catch((err) => { reject(err) })
+            .catch((err) => { reject(err) })
 
+    })
+}
+
+function deleteJournal(journalID) {
+    return new Promise((resolve, reject) => {
+        Journal.destroy({
+            where: {
+                journalID: journalID
+            }
+        }).then(() => {
+            resolve("Journal deleted!")
+        }).catch((err) => {
+            reject(err)
+        })
     })
 }
 
@@ -215,7 +229,8 @@ module.exports = {
     addJournal,
     getJournals,
     summarizeAbstract,
-    chat
+    chat,
+    deleteJournal
 }
 
 
