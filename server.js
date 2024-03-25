@@ -21,7 +21,11 @@ app.get("/articles", (req, res) => {
 
     if (req.query.journal) {
         scholarService.getArticlesByJournal(req.query.journal).then((articles) => {
-            res.send(articles)
+            // res.send(articles)
+            res.render('index', {
+                articles: articles,
+                chat: null
+            })
         }).catch((err) => {
             // console.log(err)
             res.send(err)
@@ -73,7 +77,11 @@ app.get("/articles/new", (req, res) => {
 app.get("/articles/:articleID", (req, res) => {
     // res.send("your ID: "+ req.params.articleID)
     scholarService.getArticleByID(req.params.articleID).then((article) => {
-        res.send(article)
+        // res.send(article)
+        res.render('index', {
+            articles: [article],
+            chat: null
+        })
     }).catch((err) => {
         console.log(err)
         res.send(err)
