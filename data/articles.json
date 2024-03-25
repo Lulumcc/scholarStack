@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        "articleID": 1,
         "title": "CReSCENT: CanceR Single Cell ExpressioN Toolkit",
         "description": "… of a single gene in CReSCENTs GUI. CReSCENT was able to perform gene query and visualization in 3 s for 1000 cells, 8 s for 30 000 cells and 13 s for the entire 68 579 …",
         "authors":["S. Mohanraj", "J.D. Mejia"],
@@ -8,10 +8,10 @@
         "openAccess": true,
         "doi": "https://doi.org/10.1093/nar/gkaa437",
         "coverImage": "https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/nar/48/W1/10.1093_nar_gkaa437/1/m_gkaa437fig2.jpeg?Expires=1712950534&Signature=TwseNu-uKUHKGaPsU3S2My9mAMn4TKzLQusGJHQw26U0JBCLcosZm8clTgXU1oo7xzZWl6p52iu0fmf1sN1ltTapsKNhdExO~rC2FnUh2g7xmcm54Pkwkks84M5ccEjSRMaxifrqtoh~bd3Muey7QmPrm5afvpqr2c0Nc2lZDsQadMiiMnmYgz50169JzmWhHLlB6kjl8vcb-V631w0EdkhBlM6ULDAhE5ZRTM0iiBQhkL~plPK1BMvn3saBx1AaT2XDPeVcA0P-b82BWHnsn1srWjP5HDBz~dHHqQor8Ut-vXxddNmod84i6Ao9cRQACEPyCkgz-CoD2jqaC1NKJA__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA",
-        "journal": 1
+        "journalID": 1
     },
     {
-        "id": 2,
+        "articleID": 2,
         "title": "scGPT: toward building a foundation model for single-cell multi-omics using generative AI",
         "description": "The authors introduce scGPT, a foundation model for single-cell biology, demonstrating its success in distilling insights from over 33 million cells and its potential for various genetic research applications. ",
         "authors":["H. Cui", "C. Wang"],
@@ -19,10 +19,10 @@
         "openAccess": false,
         "doi": "https://doi.org/10.1038/s41592-024-02201-0",
         "coverImage": "https://www.biorxiv.org/content/biorxiv/early/2023/05/01/2023.04.30.538439/F1.medium.gif",
-        "journal": 2
+        "journalID": 2
     },
     {
-        "id": 3,
+        "articleID": 3,
         "title": "High resolution mapping of the tumor microenvironment using integrated single-cell, spatial and in situ analysis",
         "description": "The integration of single-cell and spatial gene expression profiling technologies in large human breast cancer sections reveals molecular differences between tumor regions, identifies biomarkers for invasive carcinoma progression, and emphasizes the significance of combining these technologies for deeper insights into cancer heterogeneity with potential implications for oncology research and diagnostic/therapeutic development.",
         "authors":["A. Janesick", "R. Shelansky"],
@@ -30,7 +30,7 @@
         "openAccess": true,
         "doi": "https://doi.org/10.1038/s41467-023-43458-x",
         "coverImage": "https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41467-023-43458-x/MediaObjects/41467_2023_43458_Fig2_HTML.png?as=webp",
-        "journal": 2
+        "journalID": 2
     }
     
 ]
