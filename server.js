@@ -88,10 +88,19 @@ app.get("/articles/:articleID", (req, res) => {
     })
 })
 
+app.get("/journals/delete/:journalID", (req, res) => {
+    scholarService.deleteJournal(req.params.journalID).then(() => {
+        res.redirect("/journals")
+    }).catch((err) => {
+        res.send(err)
+    })
+})
 
 app.get("/journals/new", (req, res) => {
     res.render('newJournal')
 })
+
+
 
 app.post("/journals/new", (req, res) => {
     // console.log(req.body)
@@ -111,6 +120,7 @@ app.get("/journals", (req, res) => {
         })
     })
 })
+
 
 app.post("/chat", (req, res) => {
     scholarService.chat(req.body.chat).then((chat) => {
