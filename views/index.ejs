@@ -15,10 +15,12 @@
 
           <div class="card w-96 bg-base-100 shadow-xl">
             <figure><img src="<%= article.coverImage%>" alt="Publication" /></figure>
-            <div class="flex">
+            <br>
+            <div class="flex justify-center">
               <%if(article.openAccess) {%>
                 <div class="badge badge-secondary"><a href="/articles/openAccess">OPEN-ACCESS</a></div>
               <%}%>
+              <div class="badge badge-primary"><a href="/articles?journal=<%=article.journalID%>">Journal <%=article.journalID%></a></div>
             </div>
 
 
@@ -30,7 +32,7 @@
 
               <p><%= article.description%></p>
               <div class="card-actions justify-end">
-                <a href="/articles/<%=article.id%>" target="_blank" class="btn btn-primary w-full">Article <%=article.id%></a>
+                <a href="/articles/<%=article.articleID%>" target="_blank" class="btn btn-primary w-full">Article <%=article.articleID%></a>
                 <a href="<%=article.doi%>" target="_blank" class="btn btn-success w-full">Take me there!</a>
                 <div class="rating">
                   <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
