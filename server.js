@@ -5,6 +5,7 @@ env.config()
 
 const HTTP_PORT = process.env.PORT || 8080
 const scholarService = require("./modules/scholarService")
+const userService = require("./modules/userService")
 const path = require("path")
 
 app.use(express.static("public"))
@@ -137,14 +138,39 @@ app.post("/chat", (req, res) => {
 })
 })
 
+app.get("/login", (req, res) => {
+    res.render('login')
+})
+
+
+app.post("/login", (req, res) => {
+    res.send(req.body)
+})
+
+app.get("/register", (req, res) => {
+    res.render('register')
+})
+
+app.post("/register", (req, res) => {
+    userService.registerUser(req.body).then(() => {
+        res.redirect("/login")
+    }).catch((err) => {
+        res.send(err)
+    })
+})
+
 
 
 app.use((req, res, next) => {
     res.status(404).send("404 - We're unable to find what you're looking for.");
 })
 
-scholarService.initialize().then(() => {
+scholarService.initialize()
+.then(userService.initialize)
+.then(() => {
     app.listen(HTTP_PORT, () => {
         console.log(`server listening at port ${HTTP_PORT}`)
     })
+}).catch((err) => {
+    console.log(err)
 })
