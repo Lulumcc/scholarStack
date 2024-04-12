@@ -10,16 +10,32 @@
   
 
     <%- include('partials/navbar') %>
-    <h1>LOGIN</h1>
+    
+    <div class="hero bg-base-200 rounded-lg p-6">
+      <div class="hero-content text-center ">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold">Log In</h1>
+
+          <p class="py-6">Please provide your credentials below</p>
+          <a href="/register" class="btn btn-secondary">Register User</a>
+        </div>
+      </div>
+    </div>
     <form method="POST" action="/login" class="form-control m-10 justify-center">
 
-      <label class="input input-bordered flex items-center gap-2 w-full">
-        <input type="text" class="grow" placeholder="username" name="username" id="username" />
-      </label>
-      <label class="input input-bordered flex items-center gap-2 w-full">
-        <input type="password" class="grow" placeholder="password" name="password" id="password" />
-      </label>
-      <button type="submit" class="btn btn-success">submit</button>
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Username</span>
+        </label>
+        <input type="text" placeholder="username" name="username" class="input input-bordered" required />
+      </div>
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Password</span>
+        </label>
+        <input type="password" placeholder="password" name="password" class="input input-bordered" required />
+      </div>
+      <button type="submit" class="btn btn-success mt-5">Submit</button>
     </form>
 </body>
 </html>
