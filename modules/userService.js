@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
+const bcrypt = require('bcryptjs');
 
 const env = require("dotenv")
 env.config()
@@ -21,33 +22,20 @@ let User;
 
 function initialize() {
     return new Promise((resolve, reject) => {
-        let db1 = mongoose.createConnection(process.env.MONGO_URI)
+        let db = mongoose.createConnection(process.env.MONGO_URI)
           
           // verify the db1 connection
           
-          db1.on('error', (err) => {
+          db.on('error', (err) => {
             console.log(err);
             reject(err)
           })
           
-          db1.once('open', () => {
+          db.once('open', () => {
             console.log('MongoDB connected')
-            User = mongoose.model("users", userSchema)
+            User = db.model("users", userSchema)
             console.log("model registered")
             resolve("done")
-            // const test = new User({
-            //     username: "test",
-            //     password: "test",
-            //     email: "test@test.test"
-            // })
-
-            // test.save().then(() => {
-            //     console.log("test user saved")  
-            //     resolve("done")
-
-            // }).catch((err) => {
-            //     console.log(err)
-            // })
           })
     })
 }
@@ -58,17 +46,58 @@ function registerUser(userData) {
             reject("passwords do not match")
         }
 
-        let newUser = new User(userData)
-        newUser.save().then(() => {
-            resolve("user saved")
+        bcrypt.hash(userData.password, 10).then((hash) => {
+            userData.password = hash
+            let newUser = new User(userData)
+            newUser.save().then(() => {
+                resolve("User registered successfully")
+            }).catch((err) => {
+                if (err.code == 11000) {
+                    console.log(err)
+                    reject("Username already taken")
+                } else {
+                    console.log(err)
+                    reject("Error saving user "+err)
+                }
+            })
         }).catch((err) => {
             console.log(err)
-            reject(err)
+            reject("Encryption Error: "+err)
+        })
+    })
+}
+
+function loginUser(userData) {
+    return new Promise((resolve, reject) => {
+        // check if the user exists
+        // check if the password is correct
+        // if both are true, resolve
+
+        User.findOne({username: userData.username})
+        .exec()
+        .then((user) => {
+            bcrypt.compare(userData.password, user.password).then((result) => {
+                if (result) {
+                    // add login history
+                    // user.loginHistory.push({dateTime: (new Date()), userAgent: userData.userAgent})
+                    // User.updateOne(...)
+                    resolve(user)
+                } else {
+                    reject("incorrect credentials")
+                }
+            }).catch((err) => {
+                console.log(err)
+                reject("decryption error "+err)
+            })
+        }).catch((err) => {
+            console.log(err)
+            reject("incorrect credentials")
         })
     })
 }
 
 module.exports = {
     initialize,
-    registerUser
+    registerUser,
+    loginUser
 }
