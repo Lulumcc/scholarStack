@@ -9,6 +9,15 @@
 <body>
 
     <%- include('partials/navbar') %>
+    <div class="hero bg-base-200 rounded-lg p-6">
+      <div class="hero-content text-center ">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold">Add New Article</h1>
+
+          <a href="/news" class="btn btn-secondary">See Articles</a>
+        </div>
+      </div>
+    </div>
     <form method="POST" action="/articles/new"  class="form-control m-10 justify-center">
 
       <label class="input input-bordered flex items-center gap-2 w-96">

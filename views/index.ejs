@@ -9,11 +9,12 @@
 <body>
 
     <%- include('partials/navbar') %>
+
       <div class="grid grid-cols-3 gap-4">
 
         <% articles.forEach((article) => { %>
 
-          <div class="card w-96 bg-base-100 shadow-xl">
+          <div class="card m-2 p-2 bg-base-100 shadow-xl border-2 border-rose-200">
             <figure><img src="<%= article.coverImage%>" alt="Publication" /></figure>
             <br>
             <div class="flex justify-center">
@@ -33,7 +34,7 @@
               <p><%= article.description%></p>
               <div class="card-actions justify-end">
                 <a href="/articles/<%=article.articleID%>" target="_blank" class="btn btn-primary w-full">Article <%=article.articleID%></a>
-                <a href="<%=article.doi%>" target="_blank" class="btn btn-success w-full">Take me there!</a>
+                <a href="<%=article.doi%>" target="_blank" class="btn btn-secondary w-full">Take me there!</a>
                 <div class="rating">
                   <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
                   <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
@@ -49,12 +50,15 @@
                 </div>
                 <%}%>
 
-                <form method="POST" action="/chat"  class="form-control m-10 justify-center">
+                <form method="POST" action="/chat"  class="w-full">
 
-                  <label class="input input-bordered flex items-center gap-2 w-full">
-                    <input type="text" class="grow" placeholder="Ask ChatGPT" name="chat" id="chat" />
-                  </label>
-                  <button type="submit" class="btn btn-success">submit</button>
+                  <div class="form-control">
+                    <label class="label">
+                      <span class="label-text">Ask ChatGPT</span>
+                    </label>
+                    <input type="text" placeholder="Enter a question" name="chat" class="input input-bordered" required />
+                  </div>
+                  <button type="submit" class="w-full mt-5 btn btn-success">submit</button>
                 </form>
               </div>
             </div>

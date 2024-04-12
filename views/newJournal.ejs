@@ -9,15 +9,30 @@
 <body>
 
     <%- include('partials/navbar') %>
+    <div class="hero bg-base-200 rounded-lg p-6">
+      <div class="hero-content text-center ">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold">Add New Journal</h1>
+
+          <!-- <a href="/journals" class="btn btn-secondary">See Journals</a> -->
+        </div>
+      </div>
+    </div>
     <form method="POST" action="/journals/new"  class="form-control m-10 justify-center">
 
-      <label class="input input-bordered flex items-center gap-2 w-full">
-        <input type="text" class="grow" placeholder="Name" name="name" id="name" />
-      </label>
-      <label class="input input-bordered flex items-center gap-2 w-full">
-        <input type="text" class="grow" placeholder="URL" name="url" id="url" />
-      </label>
-      <button type="submit" class="btn btn-success">submit</button>
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Journal Name</span>
+        </label>
+        <input type="text" placeholder="name" name="name" class="input input-bordered" required />
+      </div>
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Journal URL</span>
+        </label>
+        <input type="url" placeholder="url" name="url" class="input input-bordered" required />
+      </div>
+      <button type="submit" class="btn btn-success mt-5">submit</button>
     </form>
 </body>
 </html>
