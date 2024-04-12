@@ -7,13 +7,34 @@ const HTTP_PORT = process.env.PORT || 8080
 const scholarService = require("./modules/scholarService")
 const userService = require("./modules/userService")
 const path = require("path")
+const clientSessions = require('client-sessions');
 
 app.use(express.static("public"))
 app.set("view engine", "ejs")
 app.use(express.urlencoded({ extended: true }));
 
-// console.log(process.env.OPENAI_API_KEY)
+app.use(
+    clientSessions({
+      cookieName: 'session', // this is the object name that will be added to 'req'
+      secret: 'o6LjQ5EVNC28ZgK64hDELM18ScpFQr', // this should be a long un-guessable string.
+      duration: 2 * 60 * 1000, // duration of the session in milliseconds (2 minutes)
+      activeDuration: 1000 * 60, // the session will be extended by this many ms each request (1 minute)
+    })
+)
 
+function ensureLogin(req, res, next) {
+    if (!req.session.user) {
+      res.redirect('/login');
+    } else {
+      next();
+    }
+  }
+
+app.use((req, res, next) => {
+    res.locals.session = req.session;
+    next();
+})
+  
 app.get("/", (req, res) => {
     res.redirect("/articles")
 })
@@ -63,12 +84,12 @@ app.get('/articles/openAccess', (req, res) => {
     })
 })
 
-app.get("/about", (req, res) => {
+app.get("/about", ensureLogin, (req, res) => {
     res.send("about")
 })
 
 
-app.get("/articles/new", (req, res) => {
+app.get("/articles/new", ensureLogin, (req, res) => {
     // res.send("new")  
     res.render('newArticle', {
         data: 0
@@ -138,28 +159,52 @@ app.post("/chat", (req, res) => {
 })
 })
 
+app.get("/register", (req, res) => {
+    res.render('register', {
+        successMessage: null,
+        errorMessage: null
+    })
+})
+
+app.post("/register", (req, res) => {
+    userService.registerUser(req.body).then((success) => {
+        res.render('register', {
+            successMessage: success,
+            errorMessage: null
+        })
+    }).catch((err) => {
+        console.log(err)
+        res.render('register', {
+            successMessage: null,
+            errorMessage: err
+        })
+    })
+})
+
 app.get("/login", (req, res) => {
     res.render('login')
 })
 
-
 app.post("/login", (req, res) => {
-    res.send(req.body)
-})
+    req.body.userAgent = req.get('User-Agent')
+    userService.loginUser(req.body).then((user) => {
+        //session stuff here
+        req.session.user = {
+            username: user.username,
+            email: user.email,
+            loginHistory: user.loginHistory
+        }
 
-app.get("/register", (req, res) => {
-    res.render('register')
-})
-
-app.post("/register", (req, res) => {
-    userService.registerUser(req.body).then(() => {
-        res.redirect("/login")
+        res.redirect("/articles")
     }).catch((err) => {
         res.send(err)
     })
 })
 
-
+app.get("/logout", (req, res) => {
+    req.session.reset()
+    res.redirect("/login")
+})
 
 app.use((req, res, next) => {
     res.status(404).send("404 - We're unable to find what you're looking for.");
